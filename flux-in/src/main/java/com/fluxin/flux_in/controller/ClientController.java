@@ -25,9 +25,15 @@ public class ClientController {
     }
 
     @GetMapping("/{id}/all")
-    public ResponseEntity<Set<ClientDTO>> getAllClientByEstablishmentID(@PathVariable("id") Long id) {
-        var clients = clientService.getAllClientByEstablishmentID(id);
+    public ResponseEntity<Set<ClientDTO>> getAllClientsByEstablishmentID(@PathVariable("id") Long id) {
+        var clients = clientService.getAllClientsByEstablishmentID(id);
         return ResponseEntity.ok(clients);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ClientDTO> getClientByEstablishmentID(@PathVariable("id") Long id) {
+        var client = clientService.getClientByID(id);
+        return ResponseEntity.ok(client);
     }
 
     @PutMapping("/{id}")

@@ -34,8 +34,14 @@ public class ClientService {
         return new ClientDTO(client);
     }
 
-    public Set<ClientDTO> getAllClientByEstablishmentID(Long id) {
+    public Set<ClientDTO> getAllClientsByEstablishmentID(Long id) {
         return clientRepository.findByEstablishmentId(id).stream().map(ClientDTO::new).collect(Collectors.toSet());
+    }
+
+    public ClientDTO getClientByID(Long id) {
+        var client = clientRepository.findById(id);
+        client.orElseThrow(() -> new EntityNotFoundException("Estabelecimento com ID " + id + " não encontrado."));
+        return new ClientDTO(client.get());
     }
 
     @Transactional
