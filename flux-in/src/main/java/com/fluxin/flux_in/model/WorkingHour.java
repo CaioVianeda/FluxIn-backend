@@ -1,6 +1,6 @@
 package com.fluxin.flux_in.model;
 
-import com.fluxin.flux_in.dto.WorkingHourDTO;
+import com.fluxin.flux_in.dto.employeeDTO.WorkingHourDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -38,6 +38,7 @@ public class ClientService {
         return clientRepository.findByEstablishmentId(id).stream().map(ClientDTO::new).collect(Collectors.toSet());
     }
 
+    @Transactional
     public ClientDTO updateClientByID(Long id, CreateClientDTO clientDTO) {
         validationClient.forEach(v -> v.validation(clientDTO));
         var client = clientRepository.findById(id);

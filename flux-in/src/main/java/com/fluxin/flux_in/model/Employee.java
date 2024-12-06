@@ -1,7 +1,6 @@
 package com.fluxin.flux_in.model;
 
-import com.fluxin.flux_in.dto.CreateEmployeeDTO;
-import com.fluxin.flux_in.dto.EmployeeDTO;
+import com.fluxin.flux_in.dto.employeeDTO.CreateEmployeeDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

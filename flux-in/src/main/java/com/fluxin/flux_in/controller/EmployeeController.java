@@ -1,9 +1,9 @@
 package com.fluxin.flux_in.controller;
 
-import com.fluxin.flux_in.dto.CreateEmployeeDTO;
-import com.fluxin.flux_in.dto.EmployeeDTO;
-import com.fluxin.flux_in.dto.UpdateEmployeeInformationsDTO;
-import com.fluxin.flux_in.dto.WorkingHourDTO;
+import com.fluxin.flux_in.dto.employeeDTO.CreateEmployeeDTO;
+import com.fluxin.flux_in.dto.employeeDTO.EmployeeDTO;
+import com.fluxin.flux_in.dto.employeeDTO.UpdateEmployeeInformationsDTO;
+import com.fluxin.flux_in.dto.employeeDTO.WorkingHourDTO;
 import com.fluxin.flux_in.service.EmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

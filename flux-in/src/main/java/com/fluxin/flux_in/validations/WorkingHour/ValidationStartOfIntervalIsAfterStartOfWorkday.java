@@ -1,6 +1,6 @@
 package com.fluxin.flux_in.validations.WorkingHour;
 
-import com.fluxin.flux_in.dto.WorkingHourDTO;
+import com.fluxin.flux_in.dto.employeeDTO.WorkingHourDTO;
 import jakarta.validation.ValidationException;
 import org.springframework.stereotype.Component;
 

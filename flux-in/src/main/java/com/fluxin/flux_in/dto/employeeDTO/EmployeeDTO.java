@@ -1,4 +1,4 @@
-package com.fluxin.flux_in.dto;
+package com.fluxin.flux_in.dto.employeeDTO;
 
 import com.fluxin.flux_in.model.Employee;
 

@@ -1,6 +1,6 @@
 package com.fluxin.flux_in.model;
 
-import com.fluxin.flux_in.dto.CreateEstablishmentDTO;
+import com.fluxin.flux_in.dto.establishmentDTO.CreateEstablishmentDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

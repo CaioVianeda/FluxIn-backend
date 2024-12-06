@@ -1,10 +1,9 @@
 package com.fluxin.flux_in.service;
 
-import com.fluxin.flux_in.dto.CreateEstablishmentDTO;
-import com.fluxin.flux_in.dto.EmployeeDTO;
-import com.fluxin.flux_in.dto.EstablishmentDTO;
+import com.fluxin.flux_in.dto.establishmentDTO.CreateEstablishmentDTO;
+import com.fluxin.flux_in.dto.employeeDTO.EmployeeDTO;
+import com.fluxin.flux_in.dto.establishmentDTO.EstablishmentDTO;
 import com.fluxin.flux_in.model.Establishment;
-import com.fluxin.flux_in.repository.EmployeeRepository;
 import com.fluxin.flux_in.repository.EstablishmentRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
