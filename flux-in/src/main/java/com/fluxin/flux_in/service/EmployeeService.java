@@ -9,6 +9,7 @@ import com.fluxin.flux_in.model.WorkingHour;
 import com.fluxin.flux_in.repository.EmployeeRepository;
 import com.fluxin.flux_in.repository.EstablishmentRepository;
 import com.fluxin.flux_in.repository.WorkingHourRepository;
+import com.fluxin.flux_in.validations.WorkingHour.ValidationWorkingHour;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,9 +27,12 @@ public class EmployeeService {
     WorkingHourRepository workingHourRepository;
     @Autowired
     EstablishmentRepository establishmentRepository;
+    @Autowired
+    private List<ValidationWorkingHour> validationWorkingHour;
 
     @Transactional
     public EmployeeDTO createEmployee(Long id, CreateEmployeeDTO employeeDTO) {
+        validationWorkingHour.forEach(validation -> validation.validate(employeeDTO.workingHourDTO()));
         var establishment = establishmentRepository.findById(id);
         establishment.orElseThrow(() -> new EntityNotFoundException("Estabelecimento com ID " + id + " não encontrado"));
         WorkingHour workingHour = new WorkingHour(employeeDTO.workingHourDTO());
@@ -52,15 +56,16 @@ public class EmployeeService {
     public EmployeeDTO updateEmployeeInformations(Long id, UpdateEmployeeInformationsDTO employeeInformationsDTO) {
         var employee = employeeRepository.findById(id);
         employee.orElseThrow(() -> new EntityNotFoundException("Funcionário com ID " + id + " não encontrado."));
-        employee.get().setName(employeeInformationsDTO.name());
-        employee.get().setTelephone(employeeInformationsDTO.telephone());
-        employee.get().setEmail(employeeInformationsDTO.email());
+        employee.get().setName(employeeInformationsDTO.name().trim().toLowerCase());
+        employee.get().setTelephone(employeeInformationsDTO.telephone().trim().toLowerCase());
+        employee.get().setEmail(employeeInformationsDTO.email().trim().toLowerCase());
         employeeRepository.save(employee.get());
         return new EmployeeDTO(employee.get());
     }
 
     @Transactional
     public WorkingHourDTO updateEmployeeWorkingHour(Long id, WorkingHourDTO workingHourDTO) {
+        validationWorkingHour.forEach(validation -> validation.validate(workingHourDTO));
         var employee = employeeRepository.findById(id);
         employee.orElseThrow(() -> new EntityNotFoundException("Funcionário com ID " + id + " não encontrado."));
         var workingHour = workingHourRepository.findById(employee.get().getWorkingHour().getId());

@@ -28,9 +28,9 @@ public class Employee {
     private Set<Scheduling> schedulings;
 
     public Employee(CreateEmployeeDTO employeeDTO, Establishment establishment) {
-        this.name = employeeDTO.name();
-        this.telephone = employeeDTO.telephone();
-        this.email = employeeDTO.email();
+        this.name = employeeDTO.name().trim().toLowerCase();
+        this.telephone = employeeDTO.telephone().trim().toLowerCase();
+        this.email = employeeDTO.email().trim().toLowerCase();
         this.establishment = establishment;
     }
 }

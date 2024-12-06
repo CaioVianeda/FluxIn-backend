@@ -26,18 +26,9 @@ public class Establishment {
     @OneToMany(mappedBy = "establishment")
     private Set<Procedure> procedures;
 
-
-    public Establishment(String name, String email) {
-        this.name = name;
-        this.email = email;
-        this.employees = new HashSet<>();
-        this.clients = new HashSet<>();
-        this.procedures = new HashSet<>();
-    }
-
     public Establishment(CreateEstablishmentDTO establishmentDTO){
-        this.name = establishmentDTO.name();
-        this.email = establishmentDTO.email();
+        this.name = establishmentDTO.name().trim().toLowerCase();
+        this.email = establishmentDTO.email().trim().toLowerCase();
         this.employees = new HashSet<>();
         this.clients = new HashSet<>();
         this.procedures = new HashSet<>();
