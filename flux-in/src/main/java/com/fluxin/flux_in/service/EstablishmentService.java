@@ -1,8 +1,10 @@
 package com.fluxin.flux_in.service;
 
 import com.fluxin.flux_in.dto.CreateEstablishmentDTO;
+import com.fluxin.flux_in.dto.EmployeeDTO;
 import com.fluxin.flux_in.dto.EstablishmentDTO;
 import com.fluxin.flux_in.model.Establishment;
+import com.fluxin.flux_in.repository.EmployeeRepository;
 import com.fluxin.flux_in.repository.EstablishmentRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ public class EstablishmentService {
 
     @Autowired
     EstablishmentRepository establishmentRepository;
+    @Autowired
+    EmployeeService employeeService;
 
     @Transactional
     public EstablishmentDTO createEstablishment(CreateEstablishmentDTO establishmentDTO) {
@@ -49,5 +53,9 @@ public class EstablishmentService {
         if(establishmentRepository.existsById(id)) {
             establishmentRepository.deleteById(id);
         } else throw new EntityNotFoundException("Estabelecimento com ID " + id + " não encontrado.");
+    }
+
+    public List<EmployeeDTO> getEmployees(Long id){
+        return employeeService.getEmployeesByEstablishmentId(id);
     }
 }
