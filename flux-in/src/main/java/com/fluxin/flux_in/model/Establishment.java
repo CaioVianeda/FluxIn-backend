@@ -25,6 +25,8 @@ public class Establishment {
     private Set<Client> clients;
     @OneToMany(mappedBy = "establishment")
     private Set<Procedure> procedures;
+    @OneToMany(mappedBy = "establishment")
+    private Set<Scheduling> schedulings;
 
     public Establishment(CreateEstablishmentDTO establishmentDTO){
         this.name = establishmentDTO.name().trim().toLowerCase();
@@ -32,5 +34,6 @@ public class Establishment {
         this.employees = new HashSet<>();
         this.clients = new HashSet<>();
         this.procedures = new HashSet<>();
+        this.schedulings = new HashSet<>();
     }
 }

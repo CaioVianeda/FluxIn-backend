@@ -4,8 +4,8 @@ import com.fluxin.flux_in.model.Procedure;
 
 import java.math.BigDecimal;
 
-public record ProcedureDTO (Long id, String name, BigDecimal price){
+public record ProcedureDTO (Long id, String name, BigDecimal price, Integer duration){
     public ProcedureDTO(Procedure procedure){
-        this(procedure.getId(), procedure.getName(), procedure.getPrice());
+        this(procedure.getId(), procedure.getName(), procedure.getPrice(), procedure.getDuration());
     }
 }
