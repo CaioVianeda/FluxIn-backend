@@ -21,11 +21,11 @@ public class Employee {
     private String name;
     private String telephone;
     private String email;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private WorkingHour workingHour;
     @ManyToOne
     private Establishment establishment;
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private Set<Scheduling> schedulings;
 
     public Employee(CreateEmployeeDTO employeeDTO, Establishment establishment) {

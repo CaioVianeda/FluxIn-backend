@@ -5,6 +5,7 @@ import com.fluxin.flux_in.dto.employeeDTO.EmployeeDTO;
 import com.fluxin.flux_in.dto.employeeDTO.UpdateEmployeeInformationsDTO;
 import com.fluxin.flux_in.dto.employeeDTO.WorkingHourDTO;
 import com.fluxin.flux_in.model.Employee;
+import com.fluxin.flux_in.model.Scheduling;
 import com.fluxin.flux_in.model.WorkingHour;
 import com.fluxin.flux_in.repository.EmployeeRepository;
 import com.fluxin.flux_in.repository.EstablishmentRepository;
@@ -80,8 +81,10 @@ public class EmployeeService {
     }
 
     public void deleteEmployee(Long id) {
-        if (employeeRepository.existsById(id)) {
-            employeeRepository.deleteById(id);
-        } else throw new EntityNotFoundException("Funcionário com ID " + id + " não encontrado.");
+        var employee = employeeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Funcionário com ID " + id + " não encontrado."));
+        for (Scheduling scheduling: employee.getSchedulings()){
+            scheduling.setEmployee(null);
+        }
+        employeeRepository.deleteById(id);
     }
 }

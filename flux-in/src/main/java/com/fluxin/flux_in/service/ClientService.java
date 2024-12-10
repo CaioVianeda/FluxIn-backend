@@ -56,10 +56,8 @@ public class ClientService {
     }
 
     public void deleteClientByID(Long id) {
-        if (clientRepository.existsById(id)) {
-            clientRepository.deleteById(id);
-        } else {
-            throw new EntityNotFoundException("Cliente com ID " + id + " não encontrado.");
-        }
+        var client = clientRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cliente com ID " + id + " não encontrado."));
+        client.getSchedulings().forEach(scheduling -> scheduling.setClient(null));
+        clientRepository.deleteById(id);
     }
 }

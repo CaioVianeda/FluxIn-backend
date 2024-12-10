@@ -21,7 +21,7 @@ public class Client {
     private String telephone;
     @ManyToOne
     private Establishment establishment;
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private Set<Scheduling> schedulings;
 
     public Client(CreateClientDTO clientDTO, Establishment establishment) {
@@ -29,5 +29,10 @@ public class Client {
         this.telephone = clientDTO.telephone().trim().replace("-", "");
         this.establishment = establishment;
         this.schedulings = new HashSet<>();
+    }
+
+    public Client(String name, String telephone) {
+        this.name = name;
+        this.telephone = telephone;
     }
 }
