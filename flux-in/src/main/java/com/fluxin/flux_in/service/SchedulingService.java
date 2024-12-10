@@ -1,6 +1,8 @@
 package com.fluxin.flux_in.service;
 
 import com.fluxin.flux_in.dto.schedulingDTO.CreateSchedulingDTO;
+import com.fluxin.flux_in.dto.schedulingDTO.FilterSchedulingByDateDTO;
+import com.fluxin.flux_in.dto.schedulingDTO.FilterSchedulingsBetweenDateDTO;
 import com.fluxin.flux_in.dto.schedulingDTO.SchedulingDTO;
 import com.fluxin.flux_in.model.Procedure;
 import com.fluxin.flux_in.model.Scheduling;
@@ -10,6 +12,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,6 +48,22 @@ public class SchedulingService {
                 throw new EntityNotFoundException("Funcionário com ID " + id + " não encontrado.");
             }
             return schedulingRepository.findByEmployeeId(id).stream().map(SchedulingDTO::new).collect(Collectors.toList());
+    }
+
+    public List<SchedulingDTO> getSchedulingsByEmployeeAndDate(FilterSchedulingByDateDTO dateDTO){
+        var employee = employeeRepository.findById(dateDTO.employeeID()).orElseThrow(() -> new EntityNotFoundException("Employee com ID " + dateDTO.employeeID() + " não encontrado."));
+        var startDate = dateDTO.date().toLocalDate().atStartOfDay();
+        var endDate = dateDTO.date().toLocalDate().atTime(LocalTime.MAX);
+        var schedulings = schedulingRepository.findByEmployeeIdAndDateBetween(employee.getId(), startDate,endDate);
+        return schedulings.stream().map(SchedulingDTO::new).collect(Collectors.toList());
+    }
+
+    public List<SchedulingDTO> getSchedulingsByEmployeeAndDateBetween(FilterSchedulingsBetweenDateDTO dateDTO){
+        var employee = employeeRepository.findById(dateDTO.employeeID()).orElseThrow(() -> new EntityNotFoundException("Employee com ID " + dateDTO.employeeID() + " não encontrado."));
+        var startDate = dateDTO.fromDate().toLocalDate().atStartOfDay();
+        var endDate = dateDTO.toDate().toLocalDate().atTime(LocalTime.MAX);
+        var schedulings = schedulingRepository.findByEmployeeIdAndDateBetween(employee.getId(), startDate,endDate);
+        return schedulings.stream().map(SchedulingDTO::new).collect(Collectors.toList());
     }
 
     public SchedulingDTO getSchedulingByID(Long id) {
