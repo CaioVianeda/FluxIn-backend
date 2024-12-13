@@ -21,6 +21,7 @@ public class Procedure {
     private String name;
     private BigDecimal price;
     private Integer duration;
+    private Boolean active;
     @ManyToOne
     private Establishment establishment;
     @ManyToMany(mappedBy = "procedures")
@@ -30,6 +31,7 @@ public class Procedure {
         this.name = procedureDTO.name().trim().toLowerCase();
         this.price = procedureDTO.price();
         this.duration = procedureDTO.duration();
+        this.active = true;
         this.establishment = establishment;
         this.schedulings = new ArrayList<>();
     }

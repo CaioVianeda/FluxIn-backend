@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ProcedureRepository extends JpaRepository<Procedure,Long> {
     List<Procedure> findByIdIn(List<Long> ids);
+    List<Procedure> findByEstablishmentId(Long id);
 }

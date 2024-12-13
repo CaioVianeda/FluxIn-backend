@@ -29,7 +29,10 @@ public class ProcedureService {
     }
 
     public List<ProcedureDTO> getAllProceduresByEstablishmentID(Long id) {
-        var procedures = procedureRepository.findAll();
+        if (!establishmentRepository.existsById(id)) {
+            throw new EntityNotFoundException("Estabelecimento com ID " + id + " não encontrado.");
+        }
+        var procedures = procedureRepository.findByEstablishmentId(id);
         return procedures.stream().map(ProcedureDTO::new).collect(Collectors.toList());
     }
 
@@ -45,13 +48,14 @@ public class ProcedureService {
         procedure.get().setName(procedureDTO.name().trim().toLowerCase());
         procedure.get().setPrice(procedureDTO.price());
         procedure.get().setDuration(procedureDTO.duration());
+        procedureRepository.save(procedure.get());
         return new ProcedureDTO(procedure.get());
     }
 
 
     public void deleteProcedureByID(Long id) {
         var procedure = procedureRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Procedimento com ID " + id + " não encontrado."));
-        procedure.getSchedulings().forEach(scheduling -> scheduling.getProcedures().removeIf(p -> p.getId().equals(id)));
-        procedureRepository.deleteById(id);
+        procedure.setActive(false);
+        procedureRepository.save(procedure);
     }
 }
