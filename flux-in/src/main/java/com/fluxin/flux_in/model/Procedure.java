@@ -22,7 +22,7 @@ public class Procedure {
     private BigDecimal price;
     private Integer duration;
     private Boolean active;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Establishment establishment;
     @ManyToMany(mappedBy = "procedures")
     private List<Scheduling> schedulings;

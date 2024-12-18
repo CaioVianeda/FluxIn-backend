@@ -21,9 +21,9 @@ public class Employee {
     private String name;
     private String telephone;
     private String email;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
     private WorkingHour workingHour;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Establishment establishment;
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private Set<Scheduling> schedulings;

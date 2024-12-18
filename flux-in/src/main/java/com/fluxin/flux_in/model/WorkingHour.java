@@ -22,7 +22,7 @@ public class WorkingHour {
     private LocalTime startInterval;
     private Integer intervalDuration;
     private Set<Integer> workingDays;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Employee employee;
 
     public WorkingHour(WorkingHourDTO workingHourDTO) {

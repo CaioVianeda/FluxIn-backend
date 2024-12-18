@@ -19,7 +19,7 @@ public class Client {
     private Long id;
     private String name;
     private String telephone;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Establishment establishment;
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private Set<Scheduling> schedulings;
