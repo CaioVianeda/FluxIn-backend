@@ -42,6 +42,12 @@ public class SchedulingController {
         return ResponseEntity.ok(scheduling);
     }
 
+    @PutMapping("/{id}/finish")
+    public ResponseEntity<SchedulingDTO> finishScheduling(@PathVariable("id") Long id){
+        var scheduling = schedulingService.finishSchedulingByID(id);
+        return ResponseEntity.ok(scheduling);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity deleteSchedulingByID(@PathVariable("id") Long id){
         schedulingService.deleteSchedulingByID(id);

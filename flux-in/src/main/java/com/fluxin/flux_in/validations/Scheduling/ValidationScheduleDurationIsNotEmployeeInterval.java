@@ -23,7 +23,7 @@ public class ValidationScheduleDurationIsNotEmployeeInterval implements Validati
         var duration = procedures.stream().mapToInt(Procedure::getDuration).sum();
         var startScheduling = schedulingDTO.date().toLocalTime();
         var endScheduling = startScheduling.plusMinutes(duration);
-        if(startScheduling.isBefore(employee.getWorkingHour().getStartInterval()) && !endScheduling.isBefore(employee.getWorkingHour().getStartInterval())) {
+        if(startScheduling.isBefore(employee.getWorkingHour().getStartInterval()) && endScheduling.isAfter(employee.getWorkingHour().getStartInterval())) {
             throw new ValidationException("Não foi possível realizar o atendimento pois a previsão de término está em conflito com o intervalo do funcionário.");
         }
     }

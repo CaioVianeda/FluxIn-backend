@@ -38,7 +38,7 @@ public class ErrorHandler {
 
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<String> handleValidationException(Exception ex) {
-        return ResponseEntity.badRequest().body("Erro: " + ex.getLocalizedMessage());
+        return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
     }
 
     @ExceptionHandler(Exception.class)

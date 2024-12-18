@@ -90,4 +90,11 @@ public class SchedulingService {
             schedulingRepository.deleteById(id);
         } else throw new EntityNotFoundException("Agendamento com ID " + id + " não encontrado.");
     }
+
+    public SchedulingDTO finishSchedulingByID(Long id) {
+        var schedule = schedulingRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Agendamento com ID " + id + " não encontrado."));
+        schedule.setFinished(!schedule.getFinished());
+        schedulingRepository.save(schedule);
+        return new SchedulingDTO(schedule);
+    }
 }

@@ -41,6 +41,6 @@ public class Employee {
 
     public Boolean isInterval(LocalTime time){
         var endInterval = workingHour.getStartInterval().plusMinutes(workingHour.getIntervalDuration());
-        return !time.isBefore(workingHour.getStartInterval()) && !time.isAfter(endInterval);
+        return time.isAfter(workingHour.getStartInterval()) && !time.isAfter(endInterval);
     }
 }
