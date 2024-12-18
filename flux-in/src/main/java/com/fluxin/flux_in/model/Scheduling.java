@@ -38,4 +38,8 @@ public class Scheduling {
         this.date = date;
         this.finished = false;
     }
+
+    public void finish() {
+        this.finished = true;
+    }
 }
