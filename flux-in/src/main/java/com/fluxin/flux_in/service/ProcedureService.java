@@ -55,7 +55,7 @@ public class ProcedureService {
 
     public void deleteProcedureByID(Long id) {
         var procedure = procedureRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Procedimento com ID " + id + " não encontrado."));
-        procedure.setActive(false);
+        procedure.disable();
         procedureRepository.save(procedure);
     }
 }

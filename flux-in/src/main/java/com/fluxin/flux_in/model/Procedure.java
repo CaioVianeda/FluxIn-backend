@@ -35,4 +35,8 @@ public class Procedure {
         this.establishment = establishment;
         this.schedulings = new ArrayList<>();
     }
+
+    public void disable() {
+        this.active = false;
+    }
 }
