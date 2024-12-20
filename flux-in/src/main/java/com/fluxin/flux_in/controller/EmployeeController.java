@@ -9,6 +9,7 @@ import com.fluxin.flux_in.dto.schedulingDTO.FilterSchedulingsBetweenDateDTO;
 import com.fluxin.flux_in.dto.schedulingDTO.SchedulingDTO;
 import com.fluxin.flux_in.service.EmployeeService;
 import com.fluxin.flux_in.service.SchedulingService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("employee")
+@SecurityRequirement(name = "bearer-key")
 public class EmployeeController {
 
     @Autowired

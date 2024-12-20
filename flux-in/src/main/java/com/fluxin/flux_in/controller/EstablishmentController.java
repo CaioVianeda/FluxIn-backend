@@ -4,6 +4,7 @@ import com.fluxin.flux_in.dto.employeeDTO.EmployeeDTO;
 import com.fluxin.flux_in.dto.establishmentDTO.CreateEstablishmentDTO;
 import com.fluxin.flux_in.dto.establishmentDTO.EstablishmentDTO;
 import com.fluxin.flux_in.service.EstablishmentService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/establishment")
+@SecurityRequirement(name = "bearer-key")
 public class EstablishmentController {
 
     @Autowired

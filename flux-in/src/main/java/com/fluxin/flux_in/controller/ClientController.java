@@ -3,6 +3,7 @@ package com.fluxin.flux_in.controller;
 import com.fluxin.flux_in.dto.clientDTO.ClientDTO;
 import com.fluxin.flux_in.dto.clientDTO.CreateClientDTO;
 import com.fluxin.flux_in.service.ClientService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("client")
+@SecurityRequirement(name = "bearer-key")
 public class ClientController {
     @Autowired
     private ClientService clientService;

@@ -3,6 +3,7 @@ package com.fluxin.flux_in.controller;
 import com.fluxin.flux_in.dto.schedulingDTO.CreateSchedulingDTO;
 import com.fluxin.flux_in.dto.schedulingDTO.SchedulingDTO;
 import com.fluxin.flux_in.service.SchedulingService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("scheduling")
+@SecurityRequirement(name = "bearer-key")
 public class SchedulingController {
     @Autowired
     private SchedulingService schedulingService;
