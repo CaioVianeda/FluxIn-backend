@@ -39,6 +39,11 @@ public class Scheduling {
         this.finished = false;
     }
 
+    public LocalDateTime endOfScheduling() {
+        return date.plusMinutes(procedures.stream().map(Procedure::getDuration)
+                .reduce(0, Integer::sum));
+    }
+
     public void finish() {
         this.finished = true;
     }
