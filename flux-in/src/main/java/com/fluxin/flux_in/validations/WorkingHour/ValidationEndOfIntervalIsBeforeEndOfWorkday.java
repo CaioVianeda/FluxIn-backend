@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalTime;
 
 @Component
-public class ValidationEndOfIntervalIsBeforerEndOfWorkday implements ValidationWorkingHour {
+public class ValidationEndOfIntervalIsBeforeEndOfWorkday implements ValidationWorkingHour {
     public void validate(WorkingHourDTO dto) {
         LocalTime endInterval = dto.startInterval().plusMinutes(dto.intervalDuration());
         if(endInterval.isAfter(dto.endOfWorkday()))
