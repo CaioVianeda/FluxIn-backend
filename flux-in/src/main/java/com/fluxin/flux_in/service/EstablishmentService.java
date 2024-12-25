@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
 public class EstablishmentService {
 
     @Autowired
-    EstablishmentRepository establishmentRepository;
+    private EstablishmentRepository establishmentRepository;
     @Autowired
-    EmployeeService employeeService;
+    private EmployeeService employeeService;
 
     @Transactional
     public EstablishmentDTO createEstablishment(CreateEstablishmentDTO establishmentDTO) {
