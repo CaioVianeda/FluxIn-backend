@@ -1,6 +1,8 @@
 package com.fluxin.flux_in.validations.Scheduling;
 
 import com.fluxin.flux_in.dto.schedulingDTO.CreateSchedulingDTO;
+import com.fluxin.flux_in.repository.ProcedureRepository;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -22,10 +24,14 @@ class ValidationProceduresInSchedulingIsValidTest {
     @Mock
     private CreateSchedulingDTO schedulingDTO;
 
+    @Mock
+    private ProcedureRepository procedureRepository;
+
     @Test
     @DisplayName("Deveria lançar exception ao passar um id de procedimento inexistente.")
     void validationProceduresInSchedulingIsValidScenario01() {
         BDDMockito.given(schedulingDTO.proceduresIDs()).willReturn(Arrays.asList(1L, 2L, 3L));
+        BDDMockito.given(procedureRepository.existsById(BDDMockito.anyLong())).willReturn(false);
         Assertions.assertThrows(EntityNotFoundException.class, () -> validation.validation(schedulingDTO));
     }
 
