@@ -49,9 +49,6 @@ class EstablishmentServiceTest {
     @Mock
     private Establishment establishment;
 
-    @Captor
-    private ArgumentCaptor<Establishment> establishmentArgumentCaptor;
-
     @Test
     @DisplayName("Deveria salvar o estabelecimento ao chamar o método.")
     void createEstablishmentScenario01() {
@@ -59,7 +56,7 @@ class EstablishmentServiceTest {
 
         EstablishmentDTO establishmentCreatedDTO = service.createEstablishment(establishmentDTO);
 
-        then(establishmentRepository).should().save(establishmentArgumentCaptor.capture());
+        then(establishmentRepository).should().save(any());
 
         assertEquals(establishmentDTO.name(), establishmentCreatedDTO.name());
         assertEquals(establishmentDTO.email(), establishmentCreatedDTO.email());

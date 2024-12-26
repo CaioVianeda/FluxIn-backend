@@ -17,10 +17,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class ClientService {
+
     @Autowired
     private ClientRepository clientRepository;
+
     @Autowired
     private EstablishmentRepository establishmentRepository;
+
     @Autowired
     private List<ValidationClient>  validationClient;
 
